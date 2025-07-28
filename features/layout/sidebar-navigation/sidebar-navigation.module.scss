@@ -56,6 +56,22 @@
   }
 }
 
+.logoMobile {
+  display: block;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
+}
+
+.logoDesktop {
+  display: none;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: block;
+  }
+}
+
 .menuButton {
   @media (min-width: breakpoint.$desktop) {
     display: none;
