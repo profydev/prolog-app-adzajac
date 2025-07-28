@@ -34,6 +34,14 @@ export function SidebarNavigation() {
         )}
       >
         <header className={styles.header}>
+          {/* logo mobile */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icons/logo-large.svg"
+            alt="logo"
+            className={classNames(styles.logo, styles.logoMobile)}
+          />
+          {/* logo desktop */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={
@@ -42,7 +50,7 @@ export function SidebarNavigation() {
                 : "/icons/logo-large.svg"
             }
             alt="logo"
-            className={styles.logo}
+            className={classNames(styles.logo, styles.logoDesktop)}
           />
           <Button
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
