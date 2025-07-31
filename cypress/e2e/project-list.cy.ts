@@ -1,4 +1,3 @@
-import capitalize from "lodash/capitalize";
 import mockProjects from "../fixtures/projects.json";
 
 describe("Project List", () => {
@@ -22,6 +21,21 @@ describe("Project List", () => {
 
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
+      const statusLabels = ["Critical", "Warning", "Stable"];
+      const badgeColors = [
+        {
+          background: "rgb(254, 243, 242)",
+          text: "rgb(180, 35, 24)",
+        },
+        {
+          background: "rgb(255, 250, 235)",
+          text: "rgb(181, 71, 8)",
+        },
+        {
+          background: "rgb(236, 253, 243)",
+          text: "rgb(2, 122, 72)",
+        },
+      ];
 
       // get all project cards
       cy.get("main")
@@ -32,7 +46,14 @@ describe("Project List", () => {
           cy.wrap($el).contains(languageNames[index]);
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
-          cy.wrap($el).contains(capitalize(mockProjects[index].status));
+          cy.wrap($el)
+            .contains(statusLabels[index])
+            .should(
+              "have.css",
+              "background-color",
+              badgeColors[index].background,
+            )
+            .should("have.css", "color", badgeColors[index].text);
           cy.wrap($el)
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");
