@@ -1,0 +1,49 @@
+@use "@styles/color";
+@use "@styles/misc";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+.footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+  background-color: color.$gray-50;
+  height: misc.$footer-height-mobile;
+  padding-top: 26px;
+  padding-bottom: 27px;
+
+  @media (min-width: breakpoint.$desktop) {
+    position: relative;
+    flex-direction: row;
+    height: misc.$footer-height-desktop;
+    padding: 0 space.$s8;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 25px;
+  margin-left: -1px;
+
+  @media (min-width: breakpoint.$desktop) {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  a {
+    text-decoration: none;
+    color: color.$gray-500;
+  }
+}
+
+.version {
+  margin-left: 3px;
+  color: color.$gray-400;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin-left: 0;
+  }
+}
