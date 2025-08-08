@@ -3,20 +3,32 @@ import mockProjects from "../fixtures/projects.json";
 describe("Project List", () => {
   beforeEach(() => {
     // setup request mock
-    cy.intercept("GET", "https://prolog-api.profy.dev/project", {
-      fixture: "projects.json",
+
+    cy.intercept("GET", "https://prolog-api.profy.dev/project", (req) => {
+      // delay projects load so the spinner can be tested
+      return Cypress.Promise.delay(2000, { fixture: "projects.json" }).then(
+        req.reply,
+      );
     }).as("getProjects");
 
     // open projects page
     cy.visit("http://localhost:3000/dashboard");
-
-    // wait for request to resolve
-    cy.wait("@getProjects");
   });
 
   context("desktop resolution", () => {
     beforeEach(() => {
       cy.viewport(1025, 900);
+    });
+
+    it("shows loading spinner", () => {
+      cy.wait(500);
+      cy.get('[data-testid="spinner"]');
+    });
+
+    it("hides loading spinner", () => {
+      // wait for request to resolve
+      cy.wait("@getProjects");
+      cy.get('[data-testid="spinner"]').should("not.exist");
     });
 
     it("renders the projects", () => {
@@ -58,6 +70,23 @@ describe("Project List", () => {
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");
         });
+    });
+  });
+
+  context("mobile resolution", () => {
+    beforeEach(() => {
+      cy.viewport("iphone-8");
+    });
+
+    it("shows loading spinner", () => {
+      cy.wait(500);
+      cy.get('[data-testid="spinner"]');
+    });
+
+    it("hides loading spinner", () => {
+      // wait for request to resolve
+      cy.wait("@getProjects");
+      cy.get('[data-testid="spinner"]').should("not.exist");
     });
   });
 });
