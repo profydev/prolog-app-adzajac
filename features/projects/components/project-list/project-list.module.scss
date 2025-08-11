@@ -1,5 +1,7 @@
 @use "@styles/breakpoint";
 @use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
 
 .list {
   display: grid;
@@ -24,4 +26,35 @@
   @media (min-width: breakpoint.$desktop) {
     margin-top: 125px;
   }
+}
+
+.errorBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 17px;
+  border: 1px solid color.$error-300;
+  border-radius: 8px;
+  background-color: color.$error-25;
+  color: color.$error-700;
+  font: font.$text-sm-medium;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: 6px 13px;
+  }
+}
+
+.button {
+  display: flex;
+  height: 38px;
+  margin-left: auto;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: color.$error-700;
+  font: font.$text-sm-medium;
+}
+
+.errorIcon {
+  flex-shrink: 0;
 }

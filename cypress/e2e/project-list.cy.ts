@@ -90,3 +90,58 @@ describe("Project List", () => {
     });
   });
 });
+
+describe("Project List - bad request", () => {
+  Cypress.config("defaultCommandTimeout", 10000);
+  beforeEach(() => {
+    cy.intercept(
+      { method: "GET", url: "https://prolog-api.profy.dev/project" },
+      {
+        statusCode: 400,
+        body: { error: "Bad Request" },
+      },
+    ).as("err");
+    cy.visit("http://localhost:3000/dashboard");
+    cy.wait("@err");
+  });
+
+  context("desktop", () => {
+    beforeEach(() => {
+      cy.viewport(1025, 900);
+    });
+    it("displays error screen", () => {
+      cy.get('[data-testid="error-box"]').should("exist");
+    });
+    it("clicks 'try again' button", () => {
+      // spy on api call
+      cy.intercept(
+        "GET",
+        "https://prolog-api.profy.dev/project",
+        cy.spy().as("apiCall"),
+      );
+      cy.get('[data-testid="error-box"]').find("button").click();
+      // check if button calls api after being clicked
+      cy.get("@apiCall").should("have.been.called");
+    });
+  });
+
+  context("mobile resolution", () => {
+    beforeEach(() => {
+      cy.viewport("iphone-8");
+    });
+    it("displays error screen", () => {
+      cy.get('[data-testid="error-box"]').should("exist");
+    });
+    it("clicks 'try again' button", () => {
+      // spy on api call
+      cy.intercept(
+        "GET",
+        "https://prolog-api.profy.dev/project",
+        cy.spy().as("apiCall"),
+      );
+      cy.get('[data-testid="error-box"]').find("button").click();
+      // check if button calls api after being clicked
+      cy.get("@apiCall").should("have.been.called");
+    });
+  });
+});

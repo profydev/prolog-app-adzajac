@@ -2,9 +2,10 @@ import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
 import { Spinner } from "@features/ui";
+import { Button } from "@features/ui";
 
 export function ProjectList() {
-  const { data, isLoading, isError, error } = useGetProjects();
+  const { data, isLoading, isError, error, refetch } = useGetProjects();
 
   if (isLoading) {
     return (
@@ -16,7 +17,22 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className={styles.errorBox} data-testid="error-box">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/icons/alert-circle.svg"
+          alt="alert"
+          className={styles.errorIcon}
+        ></img>
+        There was a problem while loading the project data
+        <Button onClick={() => refetch()} className={styles.button}>
+          Try again
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icons/arrow-right.svg" alt="arrow"></img>
+        </Button>
+      </div>
+    );
   }
 
   return (
