@@ -18,7 +18,7 @@ export function ProjectList() {
   if (isError) {
     console.error(error);
     return (
-      <div className={styles.errorBox}>
+      <div className={styles.errorBox} data-testid="error-box">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/icons/alert-circle.svg"
