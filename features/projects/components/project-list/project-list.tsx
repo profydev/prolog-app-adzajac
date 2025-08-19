@@ -2,7 +2,7 @@ import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
 import { Spinner } from "@features/ui";
-import { Button } from "@features/ui";
+import { UnstyledButton } from "@features/ui";
 
 export function ProjectList() {
   const { data, isLoading, isError, error, refetch } = useGetProjects();
@@ -26,11 +26,11 @@ export function ProjectList() {
           className={styles.errorIcon}
         ></img>
         There was a problem while loading the project data
-        <Button onClick={() => refetch()} className={styles.button}>
+        <UnstyledButton onClick={() => refetch()} className={styles.button}>
           Try again
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/icons/arrow-right.svg" alt="arrow"></img>
-        </Button>
+        </UnstyledButton>
       </div>
     );
   }
