@@ -40,6 +40,56 @@ ColorVariations.decorators = [
   },
 ];
 
+export const ColorVariationsDisabled: Story = {
+  args: {
+    text: "Button CTA",
+  },
+};
+
+ColorVariationsDisabled.decorators = [
+  () => {
+    return (
+      <div style={{ display: "flex", gap: "10px", alignItems: "flex-end" }}>
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.primary}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.secondary}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.gray}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.empty}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.emptyGray}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.error}
+        />
+        <Button
+          {...ColorVariationsDisabled.args}
+          disabled
+          color={ButtonColor.emptyError}
+        />
+      </div>
+    );
+  },
+];
+
 export const SizeVariations: Story = {
   args: {
     color: ButtonColor.primary,
