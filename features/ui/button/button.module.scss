@@ -126,6 +126,7 @@
     }
 
     &:disabled {
+      color: color.$primary-300;
       background-color: color.$primary-25;
       border: 1px solid color.$primary-25;
     }
