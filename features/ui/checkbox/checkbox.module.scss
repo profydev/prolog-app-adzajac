@@ -1,0 +1,104 @@
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/space";
+
+.checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: color.$gray-700;
+
+  .wrapper {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid color.$gray-300;
+    background: white;
+
+    .iconCheck {
+      display: none;
+      width: 100%;
+    }
+
+    .iconIndeterminate {
+      display: none;
+      width: 100%;
+    }
+  }
+
+  &.sm {
+    font: font.$text-sm-medium;
+
+    .wrapper {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    .label {
+      margin-left: 8px;
+    }
+  }
+
+  &.md {
+    font: font.$text-md-medium;
+
+    .wrapper {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      padding: 3px;
+    }
+
+    .label {
+      margin-left: 12px;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  input:disabled ~ .wrapper {
+    border: 1px solid color.$gray-200;
+    background: color.$gray-100;
+  }
+
+  input:disabled ~ .label {
+    color: color.$gray-300;
+  }
+
+  input:focus ~ .wrapper {
+    box-shadow: 0 0 0 4px #f4ebff;
+  }
+
+  input:checked ~ .wrapper {
+    border: 1px solid color.$primary-600;
+    background: color.$primary-50;
+
+    .iconCheck {
+      display: block;
+    }
+  }
+
+  input:indeterminate ~ .wrapper {
+    border: 1px solid color.$primary-600;
+    background: color.$primary-50;
+
+    .iconIndeterminate {
+      display: block;
+    }
+
+    .iconCheck {
+      display: none;
+    }
+  }
+
+  input:hover:not([disabled]) ~ .wrapper {
+    border: 1px solid color.$primary-600;
+    background: color.$primary-50;
+  }
+}
