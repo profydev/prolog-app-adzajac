@@ -34,8 +34,8 @@ Sizes.decorators = [
           flexDirection: "column",
         }}
       >
-        <Checkbox {...Sizes.args} size={Size.sm} />
-        <Checkbox {...Sizes.args} size={Size.md} />
+        <Checkbox {...Sizes.args} size={Size.sm} label="Small" />
+        <Checkbox {...Sizes.args} size={Size.md} label="Medium" />
       </div>
     );
   },
@@ -50,8 +50,16 @@ export const Disabled: Story = {
 Disabled.decorators = [
   () => {
     return (
-      <div>
-        <Checkbox {...Disabled.args} size={Size.sm} disabled={true} />
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          alignItems: "flex-end",
+        }}
+      >
+        <Checkbox {...Disabled.args} disabled={true} />
+        <Checkbox {...Disabled.args} disabled={true} initialChecked={true} />
+        <Checkbox {...Disabled.args} disabled={true} indeterminate={true} />
       </div>
     );
   },
