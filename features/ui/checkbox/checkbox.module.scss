@@ -62,15 +62,6 @@
     opacity: 0;
   }
 
-  input:disabled ~ .wrapper {
-    border: 1px solid color.$gray-200;
-    background: color.$gray-100;
-  }
-
-  input:disabled ~ .label {
-    color: color.$gray-300;
-  }
-
   input:focus ~ .wrapper {
     box-shadow: 0 0 0 4px #f4ebff;
   }
@@ -95,6 +86,23 @@
     .iconCheck {
       display: none;
     }
+  }
+
+  input:disabled ~ .wrapper {
+    border: 1px solid color.$gray-200;
+    background: color.$gray-100;
+
+    .iconIndeterminate path {
+      stroke: color.$gray-300;
+    }
+
+    .iconCheck path {
+      stroke: color.$gray-300;
+    }
+  }
+
+  input:disabled ~ .label {
+    color: color.$gray-300;
   }
 
   input:hover:not([disabled]) ~ .wrapper {

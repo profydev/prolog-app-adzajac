@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useRef, useEffect, useState, InputHTMLAttributes } from "react";
 
 import classNames from "classnames";
@@ -41,16 +40,39 @@ export function Checkbox({
         onChange={() => setIsChecked(!isChecked)}
       ></input>
       <div className={styles.wrapper}>
-        <img
-          src="/icons/checkbox-check.svg"
-          alt="alert"
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           className={styles.iconCheck}
-        ></img>
-        <img
-          src="/icons/checkbox-minus.svg"
-          alt="alert"
+        >
+          <path
+            d="M10.7,3l-6.4,6.4-2.9-2.9"
+            stroke="#7F56D9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           className={styles.iconIndeterminate}
-        ></img>
+        >
+          <path
+            d="M2.91675 7H11.0834"
+            stroke="#7F56D9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
       </div>
       {label && <div className={styles.label}>{label}</div>}
     </label>
