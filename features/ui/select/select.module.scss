@@ -1,0 +1,109 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.placeholder {
+  display: flex;
+  gap: 8px;
+  font: font.$text-md-regular;
+  color: color.$gray-500;
+}
+
+.singleValue {
+  display: flex;
+  gap: 8px;
+  font: font.$text-md-regular;
+  color: color.$gray-900;
+}
+
+.indicatorSeparator {
+  display: none;
+}
+
+.indicatorsContainer {
+  color: color.$gray-500;
+}
+
+.menu {
+  margin-top: 8px;
+  background-color: white;
+  box-shadow:
+    0 12px 16px -4px rgb(16 24 40 / 10%),
+    0 4px 6px -2px rgb(16 24 40 / 5%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.option {
+  font: font.$text-md-regular;
+  color: color.$gray-900;
+  padding: 10px 14px;
+  display: flex !important;
+  gap: 8px;
+
+  &.focused {
+    background-color: color.$primary-25;
+  }
+
+  &.selected {
+    background-color: color.$primary-25;
+  }
+
+  & span {
+    flex: 1 1 auto;
+  }
+}
+
+.label {
+  font: font.$text-sm-medium;
+  color: color.$gray-700;
+  margin-bottom: 6px;
+}
+
+.hint {
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  margin-top: 6px;
+}
+
+.error {
+  font: font.$text-sm-regular;
+  color: color.$error-500;
+  margin-top: 6px;
+}
+
+.control {
+  background-color: white;
+  border: 1px solid color.$gray-300;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+
+  &.focused {
+    box-shadow: 0 0 0 4px #f4ebff;
+
+    &.error {
+      box-shadow:
+        0 1px 2px 0 rgb(16 24 40 / 5%),
+        0 0 0 4px #fee4e2;
+    }
+  }
+
+  &.menuOpened {
+    .indicatorsContainer {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.disabled {
+    background-color: color.$gray-50;
+
+    .placeholder {
+      color: color.$gray-500;
+    }
+  }
+
+  &.error:not(.disabled) {
+    border-color: color.$error-300;
+  }
+}
