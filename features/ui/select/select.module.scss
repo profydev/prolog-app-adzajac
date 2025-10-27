@@ -40,6 +40,7 @@
   padding: 10px 14px;
   display: flex !important;
   gap: 8px;
+  min-height: 40px;
 
   &.focused {
     background-color: color.$primary-25;
@@ -73,6 +74,7 @@
 }
 
 .control {
+  font: font.$text-md-regular;
   background-color: white;
   border: 1px solid color.$gray-300;
   border-radius: 8px;

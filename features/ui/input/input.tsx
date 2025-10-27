@@ -43,7 +43,7 @@ export function Input({
         ></input>
         {error && (
           <img
-            src="./icons/alert-circle.svg"
+            src="/icons/alert-circle.svg"
             alt=""
             className={styles.errorIcon}
           />

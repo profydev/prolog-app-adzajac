@@ -61,7 +61,7 @@ export function Select({
   const DropdownIndicator = (props: DropdownIndicatorProps<Option>) => {
     return (
       <components.DropdownIndicator {...props}>
-        <img src="./icons/chevron-down.svg" alt=""></img>
+        <img src="/icons/chevron-down.svg" alt=""></img>
       </components.DropdownIndicator>
     );
   };
