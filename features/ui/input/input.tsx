@@ -23,7 +23,7 @@ export function Input({
 }: InputProps) {
   const [value, setValue] = useState(initialValue);
   return (
-    <>
+    <div>
       {label && <div className={styles.label}>{label}</div>}
 
       <div className={styles.inputWrapper}>
@@ -51,6 +51,6 @@ export function Input({
       </div>
       {!error && hint && <div className={styles.hint}>{hint}</div>}
       {error && <div className={styles.error}>{error}</div>}
-    </>
+    </div>
   );
 }

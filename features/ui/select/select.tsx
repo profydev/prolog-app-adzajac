@@ -82,7 +82,7 @@ export function Select({
               isFocused && styles.focused,
               menuIsOpen && styles.menuOpened,
               isDisabled && styles.disabled,
-              error && styles.error,
+              error && styles.hasError,
             ),
           menu: () => classNames(styles.menu),
           placeholder: () => classNames(styles.placeholder),
