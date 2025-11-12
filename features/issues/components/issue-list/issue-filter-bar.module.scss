@@ -1,0 +1,32 @@
+@use "@styles/breakpoint";
+
+.issueFilter {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  flex-direction: column;
+  margin-bottom: 24px;
+
+  @media (min-width: breakpoint.$desktop) {
+    justify-content: right;
+    flex-direction: row;
+  }
+}
+
+.statusSelectWrapper {
+  @media (min-width: breakpoint.$desktop) {
+    width: 160px;
+  }
+}
+
+.levelSelectWrapper {
+  @media (min-width: breakpoint.$desktop) {
+    width: 160px;
+  }
+}
+
+.projectNameInputWrapper {
+  @media (min-width: breakpoint.$desktop) {
+    width: 280px;
+  }
+}
