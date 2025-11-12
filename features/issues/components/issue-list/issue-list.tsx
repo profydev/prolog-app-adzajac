@@ -11,7 +11,7 @@ export function IssueList() {
   const page = Number(router.query.page || 1);
   const searchFilter = {
     level: router.query.level as string | undefined,
-    status: router.query.project as string | undefined,
+    status: router.query.status as string | undefined,
     project: router.query.project as string | undefined,
   };
 
