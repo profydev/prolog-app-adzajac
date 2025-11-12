@@ -1,15 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import styles from "./input.module.scss";
-import { useState } from "react";
+import { ChangeEvent } from "react";
 import classNames from "classnames";
-interface InputProps {
+
+export interface InputProps {
   label?: string;
   iconSrc?: string;
   hint?: string;
   error?: string;
   disabled?: boolean;
   placeholder?: string;
-  initialValue?: string;
+  value?: string;
+  onChange: (s: string) => void;
 }
 
 export function Input({
@@ -19,13 +21,12 @@ export function Input({
   iconSrc = "",
   placeholder = "",
   disabled = false,
-  initialValue = "",
+  value,
+  onChange,
 }: InputProps) {
-  const [value, setValue] = useState(initialValue);
   return (
-    <>
+    <div>
       {label && <div className={styles.label}>{label}</div>}
-
       <div className={styles.inputWrapper}>
         {iconSrc && <img src={iconSrc} alt="" className={styles.icon} />}
         <input
@@ -35,15 +36,15 @@ export function Input({
             iconSrc && styles.hasIcon,
           ])}
           placeholder={placeholder}
-          value={value}
+          value={value || ""} // if the value is undefined pass an empty string instead so the input isn't uncontrolled
           disabled={disabled}
-          onChange={(e) => {
-            setValue(e.target.value);
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            onChange(e.currentTarget.value);
           }}
         ></input>
         {error && (
           <img
-            src="./icons/alert-circle.svg"
+            src="/icons/alert-circle.svg"
             alt=""
             className={styles.errorIcon}
           />
@@ -51,6 +52,6 @@ export function Input({
       </div>
       {!error && hint && <div className={styles.hint}>{hint}</div>}
       {error && <div className={styles.error}>{error}</div>}
-    </>
+    </div>
   );
 }

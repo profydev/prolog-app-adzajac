@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Select } from "./select";
+import { useArgs } from "@storybook/preview-api";
 
 const options = [
   { value: "Phoenix Baker", label: "Phoenix Baker" },
@@ -16,6 +17,19 @@ const meta = {
   args: {
     options: options,
     placeholder: "Select a team member",
+    value: undefined,
+  },
+  render: function Render(args) {
+    const [{ value }, setArgs] = useArgs();
+    return (
+      <Select
+        {...args}
+        value={value}
+        onChange={(value) => {
+          setArgs({ value });
+        }}
+      ></Select>
+    );
   },
 } satisfies Meta<typeof Select>;
 
@@ -27,6 +41,7 @@ export const Default: Story = {
   args: {
     label: "",
     placeholder: "Select a team member",
+    value: undefined,
   },
 };
 
@@ -64,6 +79,14 @@ export const WithIconDisabled: Story = {
     disabled: true,
     placeholder: "Select a team member",
     iconSrc: "/icons/user.svg",
+  },
+};
+
+export const Clearable: Story = {
+  args: {
+    isClearable: true,
+    label: "",
+    placeholder: "Select a team member",
   },
 };
 
