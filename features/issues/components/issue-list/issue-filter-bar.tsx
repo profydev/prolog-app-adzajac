@@ -83,7 +83,10 @@ function IssueFilterBar({ onChange, data }: IssueFilterBarProps) {
           options={levelOptions}
         />
       </div>
-      <div className={styles.projectNameInputWrapper}>
+      <div
+        className={styles.projectNameInputWrapper}
+        data-testid="projectNameInput"
+      >
         <Input
           placeholder="Project Name"
           iconSrc="/icons/search.svg"
