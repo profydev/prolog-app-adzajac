@@ -68,7 +68,13 @@ describe("Project List", () => {
             .should("have.css", "color", badgeColors[index].text);
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should(
+              "have.attr",
+              "href",
+              encodeURI(
+                "/dashboard/issues" + "?project=" + mockProjects[index].name,
+              ),
+            );
         });
     });
   });
@@ -87,6 +93,34 @@ describe("Project List", () => {
       // wait for request to resolve
       cy.wait("@getProjects");
       cy.get('[data-testid="spinner"]').should("not.exist");
+    });
+  });
+});
+
+describe("Project List - 'view issues' link ", () => {
+  beforeEach(() => {
+    // setup request mock
+    cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+      fixture: "projects.json",
+    }).as("getProjects");
+    cy.intercept("GET", "https://prolog-api.profy.dev/issue*", {
+      fixture: "issues-page-1.json",
+    }).as("getIssues");
+    // open projects page
+    cy.visit("http://localhost:3000/dashboard");
+  });
+
+  context("desktop resolution", () => {
+    beforeEach(() => {
+      cy.viewport(1025, 900);
+    });
+
+    it("opens issue page with the filter pre-set", () => {
+      cy.get("main").find("li").find("a").first().click();
+      cy.wait("@getIssues");
+      cy.get('[data-testid="projectNameInput"]')
+        .find("input")
+        .should("have.value", mockProjects[0].name);
     });
   });
 });
