@@ -38,12 +38,19 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
         </div>
       </td>
       <td className={styles.cell}>
+        <div className={styles.mobileHeader}>Status</div>
         <Badge color={levelColors[level]} size={BadgeSize.sm}>
           {capitalize(level)}
         </Badge>
       </td>
-      <td className={styles.cell}>{numEvents}</td>
-      <td className={styles.cell}>{numUsers}</td>
+      <td className={styles.cell}>
+        <div className={styles.mobileHeader}>Events</div>
+        {numEvents}
+      </td>
+      <td className={styles.cell}>
+        <div className={styles.mobileHeader}>Users</div>
+        {numUsers}
+      </td>
     </tr>
   );
 }
