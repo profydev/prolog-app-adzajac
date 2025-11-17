@@ -1,9 +1,12 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
 
-.row:nth-child(2n) {
-  background: color.$gray-50;
+@media (min-width: breakpoint.$desktop) {
+  .row:nth-child(2n) {
+    background: color.$gray-50;
+  }
 }
 
 .cell {
@@ -29,4 +32,50 @@
 
 .errorType {
   font: font.$text-sm-medium;
+}
+
+.mobileHeader {
+  display: none;
+}
+
+@media (max-width: breakpoint.$desktop) {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    box-shadow:
+      0 1px 3px 0 rgb(16 24 40 / 10%),
+      0 1px 2px 0 rgb(16 24 40 / 6%);
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid color.$gray-200;
+    color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden;
+
+    > div:first-of-type {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+  }
+
+  .cell:nth-child(1) {
+    width: 100%;
+    align-items: start;
+    flex-direction: row;
+  }
+
+  .mobileHeader {
+    display: inline;
+    margin-bottom: 8px;
+  }
 }
